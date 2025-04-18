@@ -1,57 +1,61 @@
 <template>
-  <div>
-    <!-- Header Section (Optional: Could use a specific header image) -->
-    <section class="bg-gray-100 py-12">
-      <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold text-gray-800 text-center">Ihre Fachpraxis für Mund-, Kiefer- und Gesichtschirurgie in Verden</h1>
-        <p class="text-lg text-gray-600 mt-4 text-center max-w-3xl mx-auto">
-          Herzlich willkommen in der Praxis von Dr. Malte von Boetticher, Ihrer spezialisierten Überweisungspraxis für Oralchirurgie und Implantologie vis-à-vis vom Verdener Dom. Seit 1996 bieten wir Kompetenz und Erfahrung – seit 2024 unter neuer Leitung, mit bewährtem Team und der weiteren Unterstützung durch Dr. Dr. Wolfgang Gudehus.
+  <div class="bg-white">
+    <!-- Page Header -->
+    <section class="bg-stone-50 py-16 md:py-20 border-b border-stone-200">
+      <div class="container mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4 tracking-tight">Unsere Praxis & Unser Team</h1>
+        <p class="text-lg text-stone-700 max-w-3xl leading-relaxed">
+          Herzlich willkommen in der Praxis von Dr. Malte von Boetticher. Seit 1996 bieten wir Kompetenz und Erfahrung in der Mund-, Kiefer- und Gesichtschirurgie in Verden – seit 2024 unter neuer Leitung, mit bewährtem Team und weiterhin unterstützt durch Dr. Dr. Wolfgang Gudehus.
         </p>
       </div>
     </section>
 
     <!-- Content Sections -->
-    <section class="py-16">
-      <div class="container mx-auto px-4 space-y-12">
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto px-6 space-y-16 md:space-y-24">
+        
         <!-- Philosophie -->
-        <div class="max-w-3xl mx-auto">
-          <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Unsere Philosophie</h2>
-          <p class="text-gray-700 leading-relaxed text-center">
-            Wir legen Wert auf eine individuelle Beratung, präzise Diagnostik und schonende Behandlungsverfahren. In enger Abstimmung mit Ihrem überweisenden Zahnarzt oder Arzt entwickeln wir das für Sie optimale Therapiekonzept. Ihre Gesundheit und Zufriedenheit stehen für uns im Mittelpunkt.
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-stone-800 mb-5 tracking-tight">Unsere Philosophie</h2>
+          <p class="text-stone-700 leading-relaxed text-lg">
+            Individuelle Beratung, präzise Diagnostik und schonende Behandlung stehen bei uns im Mittelpunkt. In enger Abstimmung mit Ihrem überweisenden Arzt entwickeln wir das optimale Therapiekonzept – für Ihre Gesundheit und Zufriedenheit.
           </p>
         </div>
 
         <!-- Moderne Praxisräume -->
-        <div class="bg-white p-8 rounded-lg shadow">
-           <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Moderne Praxisräume</h2>
-           <div class="flex flex-col md:flex-row items-center gap-8">
-              <div class="md:w-1/2">
-                 <p class="text-gray-700 leading-relaxed mb-4">
-                   Unsere hellen, klimatisierten Praxisräume sind modern ausgestattet und erfüllen höchste Hygienestandards. Wir nutzen fortschrittliche Technologien wie das Digitale Volumentomogramm (DVT) für hochpräzise 3D-Aufnahmen, um Eingriffe sicher und minimalinvasiv planen zu können.
-                 </p>
-                 <!-- Add more details if desired -->
-              </div>
-              <div class="md:w-1/2">
-                 <!-- Placeholder for Image Gallery/Single Image -->
-                 <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center text-gray-500">
-                    [Praxisräume Image Placeholder]
-                 </div>
+        <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+           <div class="md:w-1/2 order-2 md:order-1">
+              <h2 class="text-3xl font-bold text-stone-800 mb-5 tracking-tight">Moderne Praxisräume</h2>
+              <p class="text-stone-700 leading-relaxed text-lg mb-4">
+                Unsere hellen, klimatisierten Praxisräume erfüllen höchste Standards an Hygiene und Ausstattung. Fortschrittliche Technologien wie das Digitale Volumentomogramm (DVT) ermöglichen hochpräzise 3D-Aufnahmen für eine sichere, minimalinvasive Behandlungsplanung.
+              </p>
+              <!-- Add more details if desired -->
+           </div>
+           <div class="md:w-1/2 order-1 md:order-2">
+              <!-- Placeholder for Image -->
+              <div class="aspect-video bg-stone-200 rounded-lg shadow-sm flex items-center justify-center text-stone-400 overflow-hidden">
+                 <img src="https://placehold.co/600x400/E0E0E0/BDBDBD?text=Praxisr%C3%A4ume" alt="Moderne Praxisräume Placeholder" class="w-full h-full object-cover">
               </div>
            </div>
         </div>
 
         <!-- Unser Team -->
-        <div>
-          <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Unser Team</h2>
-          <div class="space-y-8">
-            <TeamMemberCard
-              v-for="member in mockTeam" 
-              :key="member.name"
-              :name="member.name"
-              :title="member.title"
-              :bio="member.bio"
-              :image-placeholder="member.imagePlaceholder"
-            />
+        <div class="border-t border-stone-200 pt-16 md:pt-24">
+          <h2 class="text-3xl md:text-4xl font-bold text-stone-800 mb-12 md:mb-16 text-center tracking-tight">Lernen Sie unser Team kennen</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+            <!-- Replace TeamMemberCard with inline structure -->
+            <div v-for="member in mockTeam" :key="member.name" class="flex flex-col sm:flex-row items-start gap-6">
+              <!-- Placeholder Image -->
+              <div class="flex-shrink-0 w-24 h-24 bg-stone-200 rounded-full flex items-center justify-center text-stone-500 font-semibold text-sm">
+                {{ member.imagePlaceholder }}
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-stone-800 mb-1">{{ member.name }}</h3>
+                <p class="text-amber-700 font-medium text-sm mb-3">{{ member.title }}</p>
+                <!-- Use prose for basic HTML styling from bio -->
+                <div class="text-stone-600 leading-relaxed text-sm prose prose-sm prose-stone max-w-none prose-ul:list-disc prose-ul:pl-5 prose-li:my-1" v-html="member.bio"></div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -62,6 +66,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useHead } from '#app'; // Ensure useHead is imported if not globally available
 
 // Mock data for team members
 const mockTeam = ref([
@@ -99,4 +104,12 @@ useHead({
     { name: 'description', content: 'Lernen Sie das Team und die Praxis von Dr. Malte von Boetticher in Verden kennen. Moderne Ausstattung und erfahrene Spezialisten.' }
   ]
 })
-</script> 
+</script>
+
+<style>
+/* Add Tailwind Typography plugin if not already installed for prose classes */
+/* Ensure styles for lists inside v-html are correctly applied */
+.prose ul {
+  /* Add any custom list styling overrides here if needed */
+}
+</style> 

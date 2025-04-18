@@ -1,54 +1,65 @@
 <template>
-  <div>
-    <!-- Header Section -->
-    <section class="bg-gray-100 py-12">
-      <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold text-gray-800 text-center">Für Überweiser</h1>
-        <p class="text-lg text-gray-600 mt-4 text-center max-w-3xl mx-auto">
-          Informationen zur kollegialen Zusammenarbeit – Ihr Partner für MKG-Chirurgie in Verden.
+  <div class="bg-white">
+    <!-- Page Header -->
+    <section class="bg-stone-50 py-16 md:py-20 border-b border-stone-200">
+      <div class="container mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4 tracking-tight">Informationen für Überweiser</h1>
+        <p class="text-lg text-stone-700 max-w-3xl leading-relaxed">
+          Partnerschaftliche Zusammenarbeit für die optimale Versorgung Ihrer Patienten.
         </p>
       </div>
     </section>
 
-    <!-- Content Section -->
-    <section class="py-16">
-      <div class="container mx-auto px-4 max-w-4xl">
-        <div class="prose max-w-none lg:prose-lg bg-white p-8 rounded-lg shadow">
-          <h2>Sehr geehrte Kolleginnen und Kollegen,</h2>
-          <p>wir danken Ihnen für Ihr Vertrauen und die gute Zusammenarbeit. Als reine Überweisungspraxis unterstützen wir Sie gerne bei allen mund-, kiefer- und gesichtschirurgischen sowie oralchirurgischen Fragestellungen und Eingriffen für Ihre Patienten.</p>
+    <!-- Content Section - Styled as Modern Letter -->
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto px-6 max-w-prose">
+        <!-- Removed prose classes, applying styles directly -->
+        <div class="space-y-8 text-stone-700 leading-relaxed">
           
-          <h3>Unser Angebot für Ihre Patienten</h3>
-          <ul>
-            <li>Umfassendes Spektrum ambulanter MKG-/Oralchirurgie</li>
-            <li>Schwerpunkt Implantologie inkl. Knochenaufbau</li>
-            <li>Moderne Diagnostik mittels DVT (auch als Auftragsleistung)</li>
-            <li>Schonende Operationsverfahren (minimalinvasiv, Sedierung möglich)</li>
-            <li>Zeitnahe Terminvergabe für Beratungen und Eingriffe</li>
-            <li>Engagiertes und erfahrenes Team</li>
-          </ul>
+          <h2 class="text-3xl font-semibold text-stone-900 tracking-tight !mt-0">Sehr geehrte Kolleginnen und Kollegen,</h2>
+          <p>wir schätzen Ihr Vertrauen und freuen uns auf eine weiterhin gute Zusammenarbeit. Als spezialisierte Überweisungspraxis unterstützen wir Sie umfassend bei allen mund-, kiefer- und gesichtschirurgischen sowie oralchirurgischen Fragestellungen für Ihre Patienten.</p>
+          
+          <div>
+            <h3 class="text-xl font-semibold text-stone-800 mb-3 mt-8">Unser Angebot für Ihre Patienten</h3>
+            <ul class="list-disc pl-5 space-y-2 marker:text-amber-600">
+              <li>Umfassendes Spektrum ambulanter MKG- & Oralchirurgie</li>
+              <li>Schwerpunkt Implantologie inkl. Augmentationsverfahren</li>
+              <li>Moderne 3D-Diagnostik mittels DVT (auch als Auftragsleistung)</li>
+              <li>Schonende, minimalinvasive Operationsverfahren (Sedierung möglich)</li>
+              <li>Zeitnahe Terminvergabe</li>
+              <li>Erfahrenes und engagiertes Team</li>
+            </ul>
+          </div>
 
-          <h3>Unser Versprechen an Sie</h3>
-          <ul>
-            <li>Enge Abstimmung bei der Behandlungsplanung.</li>
-            <li>Regelmäßige Rückmeldung und ausführlicher Arztbrief nach Abschluss der Behandlung.</li>
-            <li>Rücküberweisung Ihrer Patienten nach erfolgtem Eingriff zur Weiterbehandlung.</li>
-            <li>Verfügbarkeit für Rückfragen und Notfälle.</li>
-            <li>Respektvoller Umgang mit Ihren Patienten.</li>
-          </ul>
+          <div>
+            <h3 class="text-xl font-semibold text-stone-800 mb-3 mt-8">Unser Versprechen an Sie</h3>
+            <ul class="list-disc pl-5 space-y-2 marker:text-amber-600">
+              <li>Enge Abstimmung bei der Behandlungsplanung</li>
+              <li>Zeitnahe Rückmeldung und ausführlicher Arztbrief</li>
+              <li>Konsequente Rücküberweisung zur Weiterbehandlung</li>
+              <li>Erreichbarkeit für Rückfragen und Notfälle</li>
+              <li>Ein respektvoller und fürsorglicher Umgang mit Ihren Patienten</li>
+            </ul>
+          </div>
 
-          <h3>Überweisung & Formulare</h3>
-          <p>Bitte geben Sie Ihrem Patienten die relevanten Unterlagen (Röntgenbilder, ggf. Modelle, Planungen) mit. Für eine reibungslose Überweisung können Sie unser Formular nutzen (derzeit nicht verfügbar - Link folgt).</p>
-          <!-- Placeholder for Download Link -->
-          <!-- <p><a href="#" class="text-blue-600 hover:underline">Überweisungsformular herunterladen (PDF)</a></p> -->
-          <p>Bei Fragen zur Überweisung oder spezifischen Fällen erreichen Sie uns jederzeit telefonisch.</p>
+          <div>
+            <h3 class="text-xl font-semibold text-stone-800 mb-3 mt-8">Überweisung & Formulare</h3>
+            <p>Bitte geben Sie Ihrem Patienten relevante Unterlagen (aktuelle Röntgenbilder, ggf. Modelle/Planungen) mit. Ein Überweisungsformular stellen wir Ihnen in Kürze hier zum Download bereit.</p>
+            <!-- Placeholder for Download Link -->
+            <!-- <p><a href="#" download class="text-amber-700 hover:text-amber-800 font-medium">Überweisungsformular herunterladen (PDF)</a></p> -->
+            <p>Bei Fragen zur Überweisung oder zu spezifischen Fällen sind wir jederzeit <a href="tel:+494231930606" class="text-amber-700 hover:text-amber-800 font-medium">telefonisch</a> oder per <a href="mailto:info@mkg-verden.de" class="text-amber-700 hover:text-amber-800 font-medium">E-Mail</a> für Sie erreichbar.</p>
+          </div>
 
-          <div class="mt-8 text-center">
-            <NuxtLink to="/kontakt" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
-              Kontakt aufnehmen
+          <div class="mt-12 pt-8 text-center border-t border-stone-200">
+            <NuxtLink 
+              to="/kontakt"
+              class="inline-block bg-stone-800 hover:bg-stone-700 text-white font-medium py-3 px-8 rounded transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-stone-500"
+            >
+              Direkt Kontakt aufnehmen
             </NuxtLink>
           </div>
 
-          <p class="mt-6">Wir freuen uns auf die weitere Zusammenarbeit!</p>
+          <p class="mt-10 text-lg">Wir freuen uns darauf, von Ihnen zu hören und die Zusammenarbeit fortzusetzen!</p>
         </div>
       </div>
     </section>
@@ -66,8 +77,5 @@ useHead({
 </script>
 
 <style scoped>
-/* Add specific styles if needed */
-.prose ul > li::marker {
-  color: #3b82f6; /* Example: Blue marker */
-}
+/* No longer relying on prose, styles are applied directly */
 </style> 

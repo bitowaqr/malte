@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindTypography from '@tailwindcss/typography';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -9,11 +10,15 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss',
-    // '@nuxt/icon', // Keeping this commented unless icons are needed immediately
+    '@nuxt/icon',
   ],
   css: [
     '@/assets/css/main.css', // Import the main CSS file
   ],
+  tailwindcss: {
+    configPath: 'tailwind.config.js',
+    plugins: [tailwindTypography],
+  },
   runtimeConfig: {
     datocmsApiToken: process.env.API_KEY,
     datoCmsToken: process.env.API_KEY,

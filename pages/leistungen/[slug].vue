@@ -1,58 +1,88 @@
 <template>
-  <div v-if="pending">Loading service data...</div>
-  <div v-else-if="error || !serviceData">
-    <h1 class="text-3xl font-bold text-red-600">Fehler</h1>
-    <p class="mt-4 text-gray-700">Leistung nicht gefunden oder Fehler beim Laden.</p>
-    <p v-if="error" class="mt-2 text-sm text-red-500">{{ error.message }}</p>
-    <NuxtLink to="/leistungen" class="inline-block mt-6 text-blue-600 hover:underline">Zurück zur Leistungsübersicht</NuxtLink>
+  <div v-if="pending" class="container mx-auto px-6 py-16 text-center text-stone-500">Daten werden geladen...</div>
+  <div v-else-if="error || !serviceData" class="container mx-auto px-6 py-16">
+    <h1 class="text-3xl font-bold text-red-700">Fehler</h1>
+    <p class="mt-4 text-stone-700">Leistung nicht gefunden oder Fehler beim Laden.</p>
+    <p v-if="error" class="mt-2 text-sm text-red-600">Details: {{ error.message }}</p>
+    <NuxtLink 
+      to="/leistungen" 
+      class="inline-block mt-8 font-medium text-amber-700 hover:text-amber-800 transition-colors duration-200 group"
+    >
+      <span class="inline-block transition-transform duration-200 group-hover:-translate-x-1">&larr;</span> Zurück zur Leistungsübersicht
+    </NuxtLink>
   </div>
-  <div v-else>
-    <!-- Header Section -->
-    <section class="bg-gray-100 py-12">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl font-bold text-gray-800">{{ serviceData.title }}</h1>
-        <p v-if="serviceData.introText" class="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
+  <div v-else class="bg-white">
+    <!-- Page Header -->
+    <section class="bg-stone-50 py-16 md:py-20 border-b border-stone-200">
+      <div class="container mx-auto px-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-4 tracking-tight">{{ serviceData.title }}</h1>
+        <p v-if="serviceData.introText" class="text-lg text-stone-700 max-w-3xl leading-relaxed">
           {{ serviceData.introText }}
         </p>
       </div>
     </section>
 
     <!-- Main Content Area -->
-    <section class="py-16">
-      <div class="container mx-auto px-4">
-        <!-- General Description -->
-        <div v-if="serviceData.description" class="prose max-w-none lg:prose-lg mb-12" v-html="serviceData.description"></div>
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto px-6 max-w-prose">
+        <!-- Apply prose classes for typography defaults -->
+        <div class="prose prose-lg prose-stone max-w-none 
+                    prose-headings:text-stone-900 prose-headings:font-semibold prose-headings:tracking-tight 
+                    prose-a:text-amber-700 hover:prose-a:text-amber-800 prose-a:transition-colors prose-a:duration-200 
+                    prose-strong:text-stone-800 prose-strong:font-semibold 
+                    prose-ul:list-outside prose-ul:pl-5 prose-li:marker:text-amber-600 prose-li:my-2 
+                    prose-ol:list-outside prose-ol:pl-5 prose-li:my-2 prose-p:leading-relaxed">
+          
+          <!-- General Description -->
+          <div v-if="serviceData.description" v-html="serviceData.description"></div>
 
-        <!-- Accordion Section (if applicable, e.g., for Chirurgie) -->
-        <div v-if="serviceData.accordionItems && serviceData.accordionItems.length > 0" class="bg-white p-6 rounded-lg shadow">
-          <h2 v-if="serviceData.accordionTitle" class="text-3xl font-bold text-gray-800 mb-6 text-center">{{ serviceData.accordionTitle }}</h2>
-          <div class="divide-y divide-gray-200">
-             <AccordionItem
-               v-for="(item, index) in serviceData.accordionItems"
-               :key="index"
-               :title="item.title"
-               :content="item.content"
-               :start-open="index === 0" 
-             />
+          <!-- Accordion Section Wrapper -->
+          <div v-if="serviceData.accordionItems && serviceData.accordionItems.length > 0" class="my-12 md:my-16 not-prose">
+             <h2 v-if="serviceData.accordionTitle" class="text-3xl font-semibold text-stone-900 mb-8 tracking-tight">{{ serviceData.accordionTitle }}</h2>
+             <div class="border border-stone-200 rounded-lg overflow-hidden">
+                <!-- AccordionItem component rendering - Corrected Slot Usage -->
+                <AccordionItem
+                  v-for="(item, index) in serviceData.accordionItems"
+                  :key="index"
+                  :title="item.title"
+                  :content="item.content"
+                  :start-open="index === 0" 
+                  #default="{ open, toggle }"
+                  class="border-b border-stone-200 last:border-b-0" 
+                >
+                   <!-- Button to toggle, using slot scope -->
+                   <button @click="toggle" class="flex justify-between items-center w-full p-5 text-left font-medium text-stone-700 hover:bg-stone-50 transition-colors duration-200">
+                     <span>{{ item.title }}</span>
+                     <svg class="w-5 h-5 transition-transform duration-300" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                   </button>
+                   <!-- Content: Assume AccordionItem handles visibility; apply prose styling -->
+                   <div class="p-5 pt-0 text-stone-600 text-base leading-relaxed prose prose-base prose-stone max-w-none" v-html="item.content"></div>
+                 </AccordionItem>
+             </div>
           </div>
-        </div>
 
-         <!-- Other Sections (e.g., Knochenaufbau for Implantologie) -->
-        <div v-if="serviceData.sections && serviceData.sections.length > 0" class="mt-12 space-y-12">
-          <div v-for="(section, index) in serviceData.sections" :key="index" class="bg-white p-8 rounded-lg shadow">
-            <h2 class="text-3xl font-bold text-gray-800 mb-4">{{ section.title }}</h2>
-             <!-- Add image handling here if needed -->
-            <div class="prose max-w-none lg:prose-lg" v-html="section.content"></div>
+          <!-- Other Sections -->
+          <div v-if="serviceData.sections && serviceData.sections.length > 0" class="mt-12 md:mt-16 space-y-12 md:space-y-16">
+            <div v-for="(section, index) in serviceData.sections" :key="index" class="not-prose">
+              <h2 class="text-3xl font-semibold text-stone-900 mb-4 tracking-tight">{{ section.title }}</h2>
+              <!-- Add image handling here if needed -->
+              <!-- Re-apply prose within the section if content is HTML -->
+              <div class="prose prose-base prose-stone max-w-none" v-html="section.content"></div>
+            </div>
           </div>
-        </div>
 
-         <!-- CTA Section -->
-         <div class="text-center mt-16">
-             <NuxtLink to="/kontakt" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300">
-               Beratungstermin vereinbaren
-             </NuxtLink>
-         </div>
+          <!-- CTA Section -->
+          <div class="text-center mt-16 md:mt-24 pt-8 border-t border-stone-200 not-prose">
+              <p class="text-lg text-stone-700 mb-6">Haben Sie Fragen oder wünschen eine persönliche Beratung?</p>
+              <NuxtLink 
+                to="/kontakt"
+                class="inline-block bg-stone-800 hover:bg-stone-700 text-white font-medium py-3 px-8 rounded transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-stone-500"
+              >
+                Beratungstermin vereinbaren
+              </NuxtLink>
+          </div>
 
+        </div> <!-- End Prose -->
       </div>
     </section>
 
@@ -61,11 +91,13 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+// Assuming AccordionItem component is globally registered or imported
+// import AccordionItem from '~/components/AccordionItem.vue'; 
+
 const route = useRoute();
 const slug = computed(() => route.params.slug);
 
-// *** Mock Data Fetching Function ***
-// In a real app, this would use useQuery or useAsyncData
+// *** Mock Data Fetching Function (Keep as is for now) ***
 const getMockServiceData = (serviceSlug) => {
   const allServices = {
     'implantologie': {
@@ -147,12 +179,11 @@ const getMockServiceData = (serviceSlug) => {
 };
 // ************************************
 
-// Simulate fetching data
+// Simulate fetching data (Keep as is for now)
 const pending = ref(true);
 const error = ref(null);
 const serviceData = ref(null);
 
-// Simulate async fetch on component setup
 const fetchData = () => {
   try {
     const data = getMockServiceData(slug.value);
@@ -186,22 +217,29 @@ const fetchData = () => {
 
 fetchData();
 
-// Watch for slug changes if needed (though Nuxt usually remounts)
-// watch(slug, fetchData);
+// watch(slug, fetchData); // Usually not needed with Nuxt page routing
 
 </script>
 
-<style>
-/* Add styles for prose if @tailwindcss/typography is not used */
-.prose ul {
-  list-style-type: disc;
-  padding-left: 1.5em;
+<style scoped>
+/* Basic transition for accordion content */
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
 }
-.prose ol {
-  list-style-type: decimal;
-  padding-left: 1.5em;
+
+.slide-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.prose li {
-  margin-bottom: 0.5em;
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+  max-height: 0;
+}
+.slide-fade-enter-to,
+.slide-fade-leave-from {
+    max-height: 500px; /* Adjust if content is very long */
+    overflow: hidden;
 }
 </style> 
