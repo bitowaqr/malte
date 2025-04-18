@@ -4,7 +4,7 @@ dotenv.config();
 export function useQuery(query, options) {
   const config = useRuntimeConfig();
 
-    const apiToken = config.public.datoCmsToken || process.env.API_KEY;
+    const apiToken = config.public.datoCmsToken;
 
   if (!apiToken) {
     console.error("DatoCMS API Token not available in public runtime config! Check .env and nuxt.config.ts");
